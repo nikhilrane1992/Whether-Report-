@@ -15,20 +15,77 @@ h1 { margin:150px auto 100px auto; text-align:center;}
 
 <script>
   var getRequest = function(){
-    $.ajax({
-      url: "your wheather report json url",
-      type: 'GET',
-      dataType: 'json', // added data type
-      success: function(res) {
-          console.log(res);
-          var element1 = '';
-          for (i=0; i<res.length; i++){
-
-              element1 = element1 + '<div><li><span>'+ res[i].district+' | '+res[i].weekday+': '+res[i].date+' | '+res[i].description+' | Min Temp: '+res[i].temp_min+' | Max Temp: '+res[i].temp_max+'</span></li></div>';
+    res = [
+      {
+        district: "Mumbai",
+        temp_max: "29",
+        temp_min: "24",
+        description: "cloudy heavy rain",
+        date: "2016-07-04",
+        weekday: "Monday"
+      },
+      {
+        district: "Mumbai",
+        temp_max: "29",
+        temp_min: "24",
+        description: "cloudy heavy rain",
+        day_sequence: "2",
+        date: "2016-07-05",
+        weekday: "Tuesday"
+      },
+      {
+        district: "Mumbai",
+        temp_max: "29",
+        temp_min: "24",
+        description: "cloudy light rain",
+        day_sequence: "3",
+        date: "2016-07-06",
+        weekday: "Wednesday"
+      },
+      {
+        district: "Mumbai",
+        temp_max: "27",
+        temp_min: "23",
+        description: "overcast heavy rain",
+        day_sequence: "4",
+        date: "2016-07-07",
+        weekday: "Thursday"
+      },
+      {
+        district: "Mumbai",
+        temp_max: "28",
+        temp_min: "24",
+        description: "cloudy heavy rain",
+        day_sequence: "5",
+        date: "2016-07-08",
+        weekday: "Friday"
+      },
+      {
+        district: "Mumbai",
+        temp_max: "27",
+        temp_min: "24",
+        description: "cloudy moderate rain",
+        day_sequence: "6",
+        date: "2016-07-09",
+        weekday: "Saturday"
+      },
+      {
+        district: "Mumbai",
+        temp_max: "28",
+        temp_min: "24",
+        description: "cloudy moderate rain",
+        day_sequence: "7",
+        date: "2016-07-10",
+        weekday: "Sunday"
       }
-      $('body').append('<div class="ticker-container"><div class="ticker-caption"><p>Whether Report <i class="wi wi-day-thunderstorm"></i> </p></div><ul>'+element1+'</ul></div>');
+]
+
+    var element1 = '';
+    for (i=0; i<res.length; i++){
+
+        element1 = element1 + '<div><li><span>'+ res[i].district+' | '+res[i].weekday+': '+res[i].date+' | '+res[i].description+' | Min Temp: '+res[i].temp_min+' | Max Temp: '+res[i].temp_max+'</span></li></div>';
     }
-  });
+    $('body').append('<div class="ticker-container"><div class="ticker-caption"><p>Whether Report <i class="wi wi-day-thunderstorm"></i> </p></div><ul>'+element1+'</ul></div>');
   }
   getRequest();
   setInterval(function(){
