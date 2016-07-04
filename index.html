@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="ticker.css">
+<link rel="stylesheet" type="text/css" href="weather-icons-master/css/weather-icons.min.css">
+<style>
+body { background-color:#ddd;}
+h1 { margin:150px auto 100px auto; text-align:center;}
+</style>
+<title>Wheather report</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+
+<script>
+  var getRequest = function(){
+    $.ajax({
+      url: "http://timesofindia.indiatimes.com/forecastws_ext.cms?lat=12896",
+      type: 'GET',
+      dataType: 'json', // added data type
+      success: function(res) {
+          console.log(res);
+          var element1 = '';
+          for (i=0; i<res.length; i++){
+
+              element1 = element1 + '<div><li><span>'+ res[i].district+' | '+res[i].weekday+': '+res[i].date+' | '+res[i].description+' | Min Temp: '+res[i].temp_min+' | Max Temp: '+res[i].temp_max+'</span></li></div>';
+      }
+      $('body').append('<div class="ticker-container"><div class="ticker-caption"><p>Wheather Report <i class="wi wi-day-thunderstorm"></i> </p></div><ul>'+element1+'</ul></div>');
+    }
+  });
+  }
+  getRequest();
+  setInterval(function(){
+    $('.ticker-container').remove();
+    getRequest();
+    startScript()
+  }, 10*60*1000);
+</script>
+<script src="ticker.js"></script>
+</body>
+</html>
